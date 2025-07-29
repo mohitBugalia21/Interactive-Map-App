@@ -68,3 +68,116 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+# React Leaflet Map App
+
+A modern, interactive map application built with **React**, **React-Leaflet**, and **Leaflet**. This project features a beautiful dark-themed map, custom markers, marker clustering, a draggable and stylish search bar, and a dynamic footer. Designed and developed by Mohit Bugalia.
+
+---
+
+## ✨ Features
+
+- **Dark Themed Map** using CartoDB tiles
+- **Custom Markers** with popups for Paris landmarks
+- **Marker Clustering** for better visualization
+- **Draggable, Decorative Search Bar** (Leaflet GeoSearch)
+- **Responsive, Stylish Footer** that appears on load or when the mouse is near the bottom
+- **Mobile-friendly** and fully responsive design
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
+```
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+### 3. Start the Development Server
+
+```bash
+npm start
+```
+
+The app will run at [http://localhost:3000](http://localhost:3000).
+
+---
+
+## 🗺️ Project Structure
+
+```
+src/
+  ├── App.js                # Main React component
+  ├── DraggableSearchBar.js # Draggable search bar logic
+  ├── style.css             # Custom styles
+  ├── img/
+  │    └── placeholder.png  # Custom marker icon
+  └── index.js              # Entry point
+```
+
+---
+
+## 🛠️ Main Dependencies
+
+- [React](https://reactjs.org/)
+- [React-Leaflet](https://react-leaflet.js.org/)
+- [Leaflet](https://leafletjs.com/)
+- [react-leaflet-cluster](https://www.npmjs.com/package/react-leaflet-cluster)
+- [leaflet-geosearch](https://github.com/smeijer/leaflet-geosearch)
+
+---
+
+## ⚙️ Customization
+
+- **Markers:**  
+  Edit the `markers` array in `App.js` to add or change locations and popups.
+
+- **Map Theme:**  
+  The dark map uses CartoDB's `dark_all` tiles. You can change the `TileLayer` URL for a different look.
+
+- **Search Bar:**  
+  The search bar is draggable and styled for a modern, glassy look.  
+  You can further customize its appearance in `style.css`.
+
+- **Footer:**  
+  The footer appears for a few seconds on load or when the mouse is near the bottom, and hides on map interaction.  
+  Edit the text or style in `App.js` and `style.css`.
+
+---
+
+## 📦 Build for Production
+
+```bash
+npm run build
+```
+
+---
+
+## 🙏 Credits
+
+- Map tiles by [CartoDB](https://carto.com/)
+- Marker clustering by [react-leaflet-cluster](https://www.npmjs.com/package/react-leaflet-cluster)
+- Search powered by [leaflet-geosearch](https://github.com/smeijer/leaflet-geosearch)
+
+---
+
+## 🧑‍💻 Author
+
+**Mohit Bugalia**
+
+---
+
+## 📄 License
+
+This project is for educational/demo purposes.  
+For commercial use, please check the licenses of all dependencies.
+
+---

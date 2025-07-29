@@ -1,0 +1,174 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  height: 100vh;
+}
+
+.leaflet-container {
+  height: 100vh;
+}
+
+/* Cluster icon */
+.cluster-icon {
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  background-color: #faeded;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 900;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.custom-cluster {
+  background-color: rgba(0, 123, 255, 0.8);
+  border-radius: 50%;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  line-height: 40px;
+  width: 40px;
+  height: 40px;
+}
+
+/* --- Enhanced Search Bar Styling --- */
+.leaflet-control-geosearch {
+  position: fixed !important; /* Allow free placement */
+  top: var(--searchbar-top, 24px) !important;
+  left: var(--searchbar-left, 50%) !important;
+  transform: translate(-50%, 0) !important;
+  z-index: 2000;
+  cursor: grab;
+  background: rgba(30, 32, 40, 0.75);
+  border-radius: 18px;
+  padding: 14px 22px 14px 18px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37), 0 2px 8px rgba(0,0,0,0.25);
+  backdrop-filter: blur(8px);
+  border: 1.5px solid rgba(255,255,255,0.18);
+  transition: box-shadow 0.3s;
+}
+
+.leaflet-control-geosearch:focus-within {
+  box-shadow: 0 0 0 4px #00bfff55, 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.leaflet-control-geosearch form {
+  background: transparent !important;
+  border-radius: 10px;
+  padding: 0;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+}
+
+.leaflet-control-geosearch input {
+  width: 260px;
+  padding: 10px 16px;
+  font-size: 1.08rem;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.10);
+  color: #fff;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.leaflet-control-geosearch input:focus {
+  background: rgba(0,191,255,0.12);
+  box-shadow: 0 0 0 2px #00bfff88;
+}
+
+.leaflet-control-geosearch .results {
+  background: rgba(30, 32, 40, 0.98);
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,191,255,0.15);
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.leaflet-control-geosearch .results > * {
+  padding: 10px 16px;
+  border-bottom: 1px solid #23242b;
+  cursor: pointer;
+  color: #fff;
+  transition: background 0.18s, color 0.18s;
+}
+
+.leaflet-control-geosearch .results > *:hover {
+  background: #00bfff33;
+  color: #00bfff;
+}
+
+/* Style for the clear/cross icon in the search bar */
+.leaflet-control-geosearch .reset,
+.leaflet-control-geosearch .clear,
+.leaflet-control-geosearch .leaflet-bar-part-single {
+  position: absolute;
+  right: -38px; /* Move it outside the search bar */
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,191,255,0.18);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #00bfff;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  z-index: 1001; /* Ensure it's above the dropdown */
+  box-shadow: 0 2px 8px rgba(0,191,255,0.12);
+}
+
+.leaflet-control-geosearch .reset:hover,
+.leaflet-control-geosearch .clear:hover,
+.leaflet-control-geosearch .leaflet-bar-part-single:hover {
+  background: #00bfff;
+  color: #fff;
+  box-shadow: 0 0 8px #00bfff88;
+}
+
+.app-footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  background: rgba(30, 32, 40, 0.92);
+  color: #00bfff;
+  text-align: center;
+  padding: 12px 0 8px 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  box-shadow: 0 -2px 16px 0 rgba(0,191,255,0.10);
+  z-index: 4000;
+  backdrop-filter: blur(4px);
+  opacity: 1;
+  transition: opacity 0.5s;
+  pointer-events: none; /* Prevents accidental hover/clicks */
+}
+
+.app-footer h6 {
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  font-size: 1.05rem;
+}
+
