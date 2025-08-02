@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/Interactive-Map-App/static/css/main.ed7b94fa.css",
+    "main.js": "/Interactive-Map-App/static/js/main.45d64a64.js",
+    "static/media/placeholder.png": "/Interactive-Map-App/static/media/placeholder.64cdcb0ef97818161310.png",
+    "index.html": "/Interactive-Map-App/index.html",
+    "main.ed7b94fa.css.map": "/Interactive-Map-App/static/css/main.ed7b94fa.css.map",
+    "main.45d64a64.js.map": "/Interactive-Map-App/static/js/main.45d64a64.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ed7b94fa.css",
+    "static/js/main.45d64a64.js"
+  ]
+}
