@@ -35,6 +35,8 @@ export default function App() {
     },
   ];
 
+  const [dynamicMarkers, setDynamicMarkers] = useState([]);
+
   const customIcon = new Icon({
     iconUrl: require("./img/placeholder.png"),
     iconSize: [38, 38],
@@ -81,8 +83,35 @@ export default function App() {
     };
   }, []);
 
+  const latRef = useRef();
+  const lngRef = useRef();
+  const descRef = useRef();
+
   return (
     <>
+      <div className="marker-form">
+        <input type="number" step="any" placeholder="Latitude" ref={latRef} />
+        <input type="number" step="any" placeholder="Longitude" ref={lngRef} />
+        <input type="text" placeholder="Description" ref={descRef} />
+        <button
+          onClick={() => {
+            const lat = parseFloat(latRef.current.value);
+            const lng = parseFloat(lngRef.current.value);
+            const desc = descRef.current.value;
+            if (!isNaN(lat) && !isNaN(lng) && desc.trim()) {
+              setDynamicMarkers([
+                ...dynamicMarkers,
+                { geocode: [lat, lng], popUp: `📌 ${desc}` },
+              ]);
+              latRef.current.value = "";
+              lngRef.current.value = "";
+              descRef.current.value = "";
+            }
+          }}
+        >
+          Add Marker
+        </button>
+      </div>
       <MapContainer
         center={[48.8566, 2.3522]}
         zoom={13}
