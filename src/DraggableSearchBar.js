@@ -1,45 +1,63 @@
 import { useEffect, useRef, useState } from "react";
-import { GeoSearchControl, OpenStreetMapProvider } from "leaflet-geosearch";
+import { GeoSearchControl, EsriProvider } from "leaflet-geosearch";
 import { useMap } from "react-leaflet";
 import L from "leaflet";
 
 export default function DraggableSearchBar() {
   const map = useMap();
   const [position, setPosition] = useState({
-    top: 24,
-    left: window.innerWidth / 2 - 180,
+    top: 30,
+    left: window.innerWidth / 2 - 150,
   });
   const [dragging, setDragging] = useState(false);
   const offset = useRef({ x: 0, y: 0 });
 
-  // Add the search control only once
+  // Add the search control only once with a more reliable provider
   useEffect(() => {
-    const provider = new OpenStreetMapProvider();
+    // Using EsriProvider instead of OpenStreetMapProvider to avoid CORS issues
+    const provider = new EsriProvider({
+      apikey: "", // You can use it without API key for basic usage
+    });
+
     const searchControl = new GeoSearchControl({
       provider,
       style: "bar",
-      searchLabel: "Enter a location...",
+      searchLabel: "Search for a location...",
       showMarker: true,
-      showPopup: true,
+      showPopup: false,
       marker: {
-        icon: L.icon({
-          iconUrl: require("./img/placeholder.png"),
-          iconSize: [38, 38],
+        icon: L.divIcon({
+          html: `
+            <div class="search-result-marker">
+              <span class="search-marker-icon">📍</span>
+              <div class="search-marker-pulse"></div>
+            </div>
+          `,
+          className: "search-marker-container",
+          iconSize: [30, 30],
+          iconAnchor: [15, 30],
         }),
       },
-      popupFormat: ({ query, result }) => result.label,
       autoClose: true,
       retainZoomLevel: false,
       animateZoom: true,
       keepResult: true,
+      maxSuggestions: 5,
     });
 
-    map.addControl(searchControl);
+    try {
+      map.addControl(searchControl);
+    } catch (error) {
+      console.warn("Search control already exists or failed to add:", error);
+    }
 
     return () => {
-      map.removeControl(searchControl);
+      try {
+        map.removeControl(searchControl);
+      } catch (error) {
+        console.warn("Failed to remove search control:", error);
+      }
     };
-    // eslint-disable-next-line
   }, [map]);
 
   // Drag logic
@@ -65,7 +83,8 @@ export default function DraggableSearchBar() {
         e.target.tagName === "INPUT" ||
         e.target.tagName === "BUTTON" ||
         e.target.classList.contains("reset") ||
-        e.target.classList.contains("clear")
+        e.target.classList.contains("clear") ||
+        e.target.closest(".results")
       ) {
         return;
       }
@@ -75,6 +94,7 @@ export default function DraggableSearchBar() {
         y: e.clientY - position.top,
       };
       document.body.style.userSelect = "none";
+      e.preventDefault();
     };
 
     const handleMouseMove = (e) => {
@@ -82,7 +102,7 @@ export default function DraggableSearchBar() {
         setPosition((prev) => ({
           left: Math.max(
             0,
-            Math.min(window.innerWidth - 350, e.clientX - offset.current.x)
+            Math.min(window.innerWidth - 300, e.clientX - offset.current.x)
           ),
           top: Math.max(
             0,
@@ -127,7 +147,9 @@ export default function DraggableSearchBar() {
         zIndex: 2999,
         pointerEvents: "auto",
         background: "transparent",
+        cursor: "grabbing",
       }}
     />
   ) : null;
 }
+
